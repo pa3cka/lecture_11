@@ -23,8 +23,31 @@ def read_data(file_name, key):
     return seq[key]
 
 
+
+
+def linear_search(sequence, number):
+    positions = list()
+    count = 0
+
+    idx = 0
+    while idx < len(sequence):
+        haf = sequence[idx]
+        if sequence[idx] == number:
+            positions.append(idx)
+            count += 1
+        idx += 1
+
+    return {"positions": positions, "count": count}
+
+    pass
+
+
+
+
 def main():
-    read_data(file_name='sequential.json', key='unordered_numbers')
+    sequence = read_data(file_name='sequential.json', key='unordered_numbers')
+    searched_number = input("Zadaj cislo.")
+    linear_search(sequence=sequence, number=int(searched_number))
     pass
 
 

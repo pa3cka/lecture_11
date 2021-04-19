@@ -26,12 +26,17 @@ def read_data(file_name, key):
 
 
 def linear_search(sequence, number):
+    """
+    Function finds positions and count of searched number.
+    :param sequence: (list) list in which we are searching positions and count of number
+    :param number: (int) input number
+    :return: (dict) dict of positions and count of searched number
+    """
     positions = list()
     count = 0
 
     idx = 0
     while idx < len(sequence):
-        haf = sequence[idx]
         if sequence[idx] == number:
             positions.append(idx)
             count += 1
@@ -44,10 +49,40 @@ def linear_search(sequence, number):
 
 
 
+def pattern_search(sequence, pattern):
+    """
+    Function finds positions of all searched patterns.
+    :param sequence: (str) string in which we are searching patterns
+    :param pattern: (str) searched pattern
+    :return: (set) positions of pattern
+    """
+    positions_of_pattern = set()
+
+    left_idx, right_idx = 0, len(pattern)
+
+    while right_idx < len(sequence):
+        if sequence[left_idx:right_idx] == pattern:
+            positions_of_pattern.add(left_idx + len(pattern) // 2)
+        left_idx += 1
+        right_idx += 1
+
+    return positions_of_pattern
+    pass
+
+
+
+
 def main():
+    """
+    Driver function.
+    :return:
+    """
     sequence = read_data(file_name='sequential.json', key='unordered_numbers')
     searched_number = input("Zadaj cislo.")
-    linear_search(sequence=sequence, number=int(searched_number))
+    result_1 = linear_search(sequence=sequence, number=int(searched_number))
+
+    sequence = read_data(file_name='sequential.json', key='dna_sequence')
+    result_2 = pattern_search(sequence=sequence, pattern='ATA')
     pass
 
 

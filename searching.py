@@ -72,6 +72,32 @@ def pattern_search(sequence, pattern):
 
 
 
+def binary_search(sequence, number):
+    """
+
+    :param sequence:
+    :param number:
+    :return:
+    """
+    left, right = (0, len(sequence)-1)
+
+    while left <= right:
+        middle_index = (right + left) // 2
+
+        if sequence[middle_index] == number:
+            return middle_index
+
+        if sequence[middle_index] < number:
+            left = middle_index + 1
+        elif sequence[middle_index] > number:
+            right = middle_index - 1
+        else:
+            return middle_index
+
+    return None
+
+
+
 def main():
     """
     Driver function.
@@ -83,6 +109,9 @@ def main():
 
     sequence = read_data(file_name='sequential.json', key='dna_sequence')
     result_2 = pattern_search(sequence=sequence, pattern='ATA')
+
+    sequence = read_data(file_name='sequential.json', key='ordered_numbers')
+    result_3 = binary_search(sequence=sequence, number=8)
     pass
 
 
